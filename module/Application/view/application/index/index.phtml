@@ -1,0 +1,171 @@
+    <!-- Hero Section -->
+    <div>
+      <div class="container text-center space-top-2 space-top-md-4 space-top-lg-2">
+        <div class="w-md-75 mx-md-auto mb-5">
+          <h1 class="display-4 font-size-md-down-5 font-weight-medium mb-3">ProsperEOS</h1>
+          <p class="lead">Complete Decentralized Funding Platform.</p>
+        </div>
+      </div>
+    </div>
+    <!-- End Hero Section -->
+
+    <!-- Features Section -->
+    <div id="featuresSection" class="container space-2 space-md-1">
+      <div id="SVGkeyFeatures" class="svg-preloader card-deck card-lg-gutters-2 d-block d-lg-flex">
+        <div class="card shadow mb-3 mb-lg-0">
+          <!-- Icon Blocks -->
+          <div class="card-body p-5">
+            <figure class="ie-height-56 w-100 max-width-8 mb-4">
+              <img class="js-svg-injector" src="/assets/svg/icons/icon-18.svg" alt="SVG"
+                   data-parent="#SVGkeyFeatures">
+            </figure>
+            <h3 class="h5">Project With Transparency.</h3>
+            <p class="font-size-1">Transparency in business means making your company open, honest, and cooperative.</p>
+            <a class="font-size-1" href="#">Explore now <span class="fas fa-angle-right align-middle ml-2"></span></a>
+          </div>
+          <!-- End Icon Blocks -->
+        </div>
+
+        <div class="card shadow mb-3 mb-lg-0">
+          <!-- Icon Blocks -->
+          <div class="card-body p-5">
+            <figure class="ie-height-56 w-100 max-width-8 mb-4">
+              <img class="js-svg-injector" src="/assets/svg/icons/icon-7.svg" alt="SVG"
+                   data-parent="#SVGkeyFeatures">
+            </figure>
+            <h3 class="h5">Investors Get Involve.</h3>
+            <p class="font-size-1">Voting! voice of the contributor. Choosing the best possible option.</p>
+            <a class="font-size-1" href="#">Explore now <span class="fas fa-angle-right align-middle ml-2"></span></a>
+          </div>
+          <!-- End Icon Blocks -->
+        </div>
+
+        <div class="card shadow">
+          <!-- Icon Blocks -->
+          <div class="card-body p-5">
+            <figure class="ie-height-56 w-100 max-width-8 mb-4">
+              <img class="js-svg-injector" src="/assets/svg/icons/icon-36.svg" alt="SVG"
+                   data-parent="#SVGkeyFeatures">
+            </figure>
+            <h3 class="h5">Resource Management.</h3>
+            <p class="font-size-1">We provide legit suppliers and vendors for your projects.</p>
+            <a class="font-size-1" href="#">Explore now <span class="fas fa-angle-right align-middle ml-2"></span></a>
+          </div>
+          <!-- End Icon Blocks -->
+        </div>
+
+        <div class="card shadow">
+          <!-- Icon Blocks -->
+          <div class="card-body p-5">
+            <figure class="ie-height-56 w-100 max-width-8 mb-4">
+              <img class="js-svg-injector" src="/assets/svg/icons/icon-31.svg" alt="SVG"
+                   data-parent="#SVGkeyFeatures">
+            </figure>
+            <h3 class="h5">Earn Incentives.</h3>
+            <p class="font-size-1">Be a seller and earn incentives. Join now in our affiliates.</p>
+            <a class="font-size-1" href="#">Explore now <span class="fas fa-angle-right align-middle ml-2"></span></a>
+          </div>
+          <!-- End Icon Blocks -->
+        </div>
+      </div>
+    </div>
+    <!-- End Features Section -->
+
+
+    <!-- Learn Section -->
+    <div id="learnSection" class="clearfix border-bottom">
+      <div class="container">
+        <!-- Title -->
+        <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-9">
+          <h2 class="h1 font-weight-normal">Open Projects</h2>
+          <p>Start a project or be a contributor.</p>
+        </div>
+        <!-- End Title -->
+
+        <div class="row">
+
+          <!-- Blog Entries Column -->
+          <div class="col-md-8">
+
+            <?php
+            echo $this->paginationControl(
+                $this->paginator,
+                'sliding',
+                "partial/home/paginator.phtml",
+                array(
+                  'route' => 'projects',
+                  'search_by' => $this->search_by,
+                )
+            );
+          ?>
+
+            <?php foreach ($paginator as $row): ?>
+              <article class="d-block card border-0 mb-7">
+                <div class="card-body p-0">
+                  <div class="row">
+                    <div class="col-sm-5 mb-5 mb-sm-0">
+                      <a href="<?php echo $this->url('project', array('action' => 'view', 'id' => $row->getId(),)); ?>"><img class="img-fluid w-100 rounded" src="/img/project/<?php echo $row->getId(); ?>/photo-480x320.jpg" alt="<?php echo $this->escapehtml($row->getName()); ?>"></a>
+                    </div>
+                    <div class="col-sm-7">
+                      <div class="pr-4">
+                        <div>
+                          <h2 class="h5">
+                            <a href="<?php echo $this->url('project', array('action' => 'view', 'id' => $row->getId(),)); ?>"><?php echo $this->escapehtml($row->getName()); ?></a>
+                          </h2>
+                          <p><?php echo $this->escapehtml($row->getDescription()); ?></p>
+                        </div>
+                        <small class="d-block text-secondary">Address: <a class="text-dark font-weight-semi-bold" href="#"><?php echo $this->escapehtml($row->getEosPublicAddress()); ?></a></small>
+                        <br><a href="<?php echo $this->url('project', array('action' => 'view', 'id' => $row->getId(),)); ?>">View Project</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+            <?php endforeach; ?>
+
+            <?php
+            echo $this->paginationControl(
+                $this->paginator,
+                'sliding',
+                "partial/home/paginator.phtml",
+                array(
+                  'route' => 'projects',
+                  'search_by' => $this->search_by,
+                )
+            );
+          ?>
+
+          </div>
+
+          <!-- Sidebar Widgets Column -->
+          <div class="col-md-4">
+            <div class="card text-center">
+              <div class="card-body">
+                <a href="<?php echo $this->url('project', array('action' => 'create',)); ?>" class="btn btn-primary">Start a project</a>
+              </div>
+            </div>
+            <br>
+
+            <div class="card text-center">
+              <div class="card-body">
+                <a href="<?php echo $this->url('supplier'); ?>" class="btn btn-primary">Become a supplier</a>
+              </div>
+            </div>
+            <br>
+
+            <div class="card text-center">
+              <div class="card-body">
+                <a href="<?php echo $this->url('incentive', array('action' => 'register',)); ?>" class="btn btn-primary">Earn incentives</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.row -->
+
+
+      </div>
+
+    </div>
+    <!-- End Learn Section -->
