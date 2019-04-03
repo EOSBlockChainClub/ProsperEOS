@@ -14,6 +14,10 @@ class IndexController extends AbstractActionController
   */
   public function indexAction()
   {
+    $command = 'cleos push action peos3 request \'["peos"]\' -p bob@active';
+    exec($command, $output);
+    print_r($output);
+    exit();
     //$command = 'cleos wallet list';
 
     /*

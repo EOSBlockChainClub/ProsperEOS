@@ -134,6 +134,9 @@ class IndexController extends AbstractActionController
             $image->resize(480, 320);
             $image->save($destination2);
 
+            $command = 'sudo cleos push action peos3 supplier \'["peos"]\' -p bob@active';
+            exec($command, $output);
+
             $this->flashMessenger()->setNamespace('success')->addMessage('Thank you. Your application  is under review.');
             return $this->redirect()->toRoute('supplier');
         }

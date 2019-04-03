@@ -28,6 +28,9 @@ class IndexController extends AbstractActionController
     $referalId = null;
     if($_POST){
       $referalId = mt_rand(15, 5000);
+
+      $command = 'sudo cleos push action peos3 affiliate \'["peos"]\' -p bob@active';
+      exec($command, $output);
     }
 
     $order = array('created_datetime DESC');

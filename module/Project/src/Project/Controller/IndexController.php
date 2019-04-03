@@ -102,25 +102,28 @@ class IndexController extends AbstractActionController
           $this->getProjectMapper()->save($project);
 
           $directory = $config['pathProjectPhoto']['absolutePath'] . $project->getId();
-            if(!file_exists($directory)){
-              mkdir($directory, 0755);
-            }
+          if(!file_exists($directory)){
+            mkdir($directory, 0755);
+          }
 
-            $ext = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
-            $destination = $directory . "/photo-orig." . $ext;
-            if(!file_exists($destination)){
-               move_uploaded_file($_FILES['photo']['tmp_name'], $destination);
-            }
-            $destination2 = $directory . "/photo-480x320." . $ext;
-            if(file_exists($destination2)){
-               unlink($destination2);
-            }
-            $image = new ImageResize($destination);
-            $image->resize(480, 320);
-            $image->save($destination2);
+          $ext = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+          $destination = $directory . "/photo-orig." . $ext;
+          if(!file_exists($destination)){
+             move_uploaded_file($_FILES['photo']['tmp_name'], $destination);
+          }
+          $destination2 = $directory . "/photo-480x320." . $ext;
+          if(file_exists($destination2)){
+             unlink($destination2);
+          }
+          $image = new ImageResize($destination);
+          $image->resize(480, 320);
+          $image->save($destination2);
 
-            $this->flashMessenger()->setNamespace('success')->addMessage('Project added successfully.');
-            return $this->redirect()->toRoute('project', array('action' => 'view', 'id' => $project->getId(),));
+          $command = 'sudo cleos push action peos3 create \'["peos"]\' -p bob@active';
+          exec($command, $output);
+
+          $this->flashMessenger()->setNamespace('success')->addMessage('Project added successfully.');
+          return $this->redirect()->toRoute('project', array('action' => 'view', 'id' => $project->getId(),));
         }
       }
     }
@@ -150,6 +153,9 @@ class IndexController extends AbstractActionController
         $projectContributor->setEosPublicAddress('EOS85kJTsjfgTDzuPyhYCLx4ZSR6wWfpfK1A3bEJNFhnp6eR5mkYn');
         $projectContributor->setAmount($amount);
         $this->getProjectContributorMapper()->save($projectContributor);
+
+        $command = 'sudo cleos push action peos3 contribute \'["peos"]\' -p bob@active';
+        exec($command, $output);
 
         $this->flashMessenger()->setNamespace('success')->addMessage('Thankyou for backing up this project. You can now vote!');
         return $this->redirect()->toRoute('project', array('action' => 'view', 'id' => $project->getId(),));
@@ -240,6 +246,9 @@ class IndexController extends AbstractActionController
         $projectSpendingRequest->setIsFinalized('N');
         $this->getProjectSpendingRequestMapper()->save($projectSpendingRequest);
 
+        $command = 'sudo cleos push action peos3 request \'["peos"]\' -p bob@active';
+        exec($command, $output);
+
         $this->flashMessenger()->setNamespace('success')->addMessage('Spending request added successfully.');
         return $this->redirect()->toRoute('project', array('action' => 'request', 'id' => $project->getId(),));
       }
@@ -274,6 +283,9 @@ class IndexController extends AbstractActionController
     $projectSpendingRequestVote->setIsApproved('Y');
     $this->getProjectSpendingRequestVoteMapper()->save($projectSpendingRequestVote);
 
+    $command = 'sudo cleos push action peos3 voteyes \'["peos"]\' -p bob@active';
+    exec($command, $output);
+
     $this->flashMessenger()->setNamespace('success')->addMessage('Vote added successfully.');
     return $this->redirect()->toRoute('project', array('action' => 'request', 'id' => $project->getId(),));
   }
@@ -301,6 +313,9 @@ class IndexController extends AbstractActionController
     $projectSpendingRequestVote->setIsApproved('N');
     $this->getProjectSpendingRequestVoteMapper()->save($projectSpendingRequestVote);
 
+    $command = 'sudo cleos push action peos3 voteno \'["peos"]\' -p bob@active';
+    exec($command, $output);
+
     $this->flashMessenger()->setNamespace('success')->addMessage('Vote added successfully.');
     return $this->redirect()->toRoute('project', array('action' => 'request', 'id' => $project->getId(),));
   }
@@ -324,6 +339,9 @@ class IndexController extends AbstractActionController
 
     $projectSpendingRequest->setIsFinalized('Y');
     $this->getProjectSpendingRequestMapper()->save($projectSpendingRequest);
+
+    $command = 'sudo cleos push action peos3 finalize \'["peos"]\' -p bob@active';
+    exec($command, $output);
 
     $this->flashMessenger()->setNamespace('success')->addMessage('Spending request finalize. Payment send to supplier.');
     return $this->redirect()->toRoute('project', array('action' => 'request', 'id' => $project->getId(),));
