@@ -29,7 +29,7 @@
                 Project Balance
               </div>
               <div class="card-body">
-                <h5 class="card-title"><?php echo number_format($this->sumProjectContributorAmount, 8); ?> EOS</h5>
+                <h5 class="card-title"><?php echo number_format($this->sumProjectContributorAmount, 8); ?> PEOS</h5>
               </div>
             </div>
           </div>
@@ -39,7 +39,7 @@
                 Minimum Contribution
               </div>
               <div class="card-body">
-                <h5 class="card-title"><?php echo number_format($this->project->getMinimumContribution(), 8); ?> EOS</h5>
+                <h5 class="card-title"><?php echo number_format($this->project->getMinimumContribution(), 8); ?> PEOS</h5>
               </div>
             </div>
           </div>
@@ -101,13 +101,13 @@
                 <div class="col-sm-12 my-1">
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <div class="input-group-text">EOS</div>
+                      <div class="input-group-text">PEOS</div>
                     </div>
-                    <input required type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Amount" name="amount">
+                    <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Amount" name="amount">
                   </div>
                 </div>
                 <div class="col-auto my-1">
-                  <button type="submit" class="btn btn-success">Contribute</button>
+                  <button type="submit" id="myButton" class="btn btn-success">Contribute</button>
                 </div>
               </div>
             </form>
@@ -122,8 +122,10 @@
 
 <script>
 $(document).ready(function(){
+  $("#myButton").click(function() {
+    return signin();
+  });
   $("#myForm").submit(function() {
-    signout();
     return signin();
   });
 });

@@ -98,6 +98,7 @@ class IndexController extends AbstractActionController
           $project = new ProjectEntity;
           $project->setName($data['name']);
           $project->setDescription($data['description']);
+          $project->setEosPublicAddress('thegigamike1');
           $project->setMinimumContribution($data['minimum_contribution']);
           $this->getProjectMapper()->save($project);
 

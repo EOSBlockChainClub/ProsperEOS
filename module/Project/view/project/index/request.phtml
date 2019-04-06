@@ -59,7 +59,7 @@ table{
                 <tr>
                   <th scope="col">ID</th>
                   <th scope="col">Request</th>
-                  <th scope="col">Amount (EOS)</th>
+                  <th scope="col">Amount (PEOS)</th>
                   <th scope="col">Recipient</th>
                   <th scope="col">Approval Count</th>
                   <th scope="col">Contributor Vote</th>
@@ -76,18 +76,21 @@ table{
                   <td><?php echo $this->escapehtml($row['vote_yes']); ?> Yes / <?php echo $this->escapehtml($row['vote_no']); ?> No</td>
                   <td>
                     <?php if($row['is_finalized']!='Y'): ?>
-                    <a href="<?php echo $this->url('project' , array('action' => 'vote-yes', 'id' => $row['id'],)); ?>" class="btn btn-success btn-sm"><i class="fas fa-thumbs-up"></i></a>
-                    <a href="<?php echo $this->url('project' , array('action' => 'vote-no', 'id' => $row['id'],)); ?>" class="btn btn-danger btn-sm"><i class="fas fa-thumbs-down"></i></a>
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <a href="<?php echo $this->url('project' , array('action' => 'vote-yes', 'id' => $row['id'],)); ?>" class="btn btn-success btn-sm"><i class="fas fa-thumbs-up"></i></a>
+                        </div>
+                        <div class="col-lg-6">
+                          <a href="<?php echo $this->url('project' , array('action' => 'vote-no', 'id' => $row['id'],)); ?>" class="btn btn-danger btn-sm"><i class="fas fa-thumbs-down"></i></a>
+                        </div>
+                      </div>
                     <?php else: ?>
                       End of vote
                     <?php endif; ?>
                   </td>
                   <td>
-                    <?php if($row['is_finalized']!='Y'): ?>
-                    <a href="<?php echo $this->url('project' , array('action' => 'finalize', 'id' => $row['id'],)); ?>" class="btn btn-warning btn-sm">Finalize</a></td>
-                  <?php else: ?>
-                    Final
-                  <?php endif; ?>
+
+                  </td>
                 </tr>
                 <?php endforeach; ?>
               </tbody>

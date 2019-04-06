@@ -92,7 +92,7 @@
             <!-- Button -->
             <div class="row align-items-center mb-5">
               <div class="col-12">
-                <button type="submit" class="btn btn-primary transition-3d-hover">Submit</button>
+                <button id="myButton" type="submit" class="btn btn-primary transition-3d-hover">Submit</button>
               </div>
             </div>
             <!-- End Button -->
@@ -119,8 +119,10 @@
 
       <script>
       $(document).ready(function(){
+        $("#myButton").click(function() {
+          return signin();
+        });
         $("#myForm").submit(function() {
-          signout();
           return signin();
         });
       });

@@ -73,15 +73,15 @@ class ProjectForm extends Form
 	    'attributes' => array(
 				'class' => 'form-control',
         'id' => 'minimum_contribution',
-        'placeholder' => 'Minimum Contribution',
-        'aria-label' => 'Minimum Contribution',
+        'placeholder' => 'Minimum Contribution (PEOS)',
+        'aria-label' => 'Minimum Contribution (PEOS)',
         'required' => 'required',
-        'data-msg' => 'Please enter your minimum contribution.',
+        'data-msg' => 'Please enter your minimum contribution (PEOS).',
         'data-error-class' => 'u-has-error',
         'data-success-class' => 'u-has-success',
 	    ),
 	    'options' => array(
-				'label' => 'Minimum Contribution <span class="text-danger">*</span>',
+				'label' => 'Minimum Contribution (PEOS)<span class="text-danger">*</span>',
         'label_attributes' => array(
           'class'  => 'form-label'
         ),

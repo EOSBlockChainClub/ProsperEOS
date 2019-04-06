@@ -72,15 +72,15 @@ class ProjectSpendingRequestForm extends Form
 	    'attributes' => array(
 				'class' => 'form-control',
         'id' => 'amount',
-        'placeholder' => 'EOS Amount',
-        'aria-label' => 'EOS Amount',
+        'placeholder' => 'PEOS Amount',
+        'aria-label' => 'PEOS Amount',
         'required' => 'required',
-        'data-msg' => 'Please enter EOS amount.',
+        'data-msg' => 'Please enter PEOS amount.',
         'data-error-class' => 'u-has-error',
         'data-success-class' => 'u-has-success',
 	    ),
 	    'options' => array(
-				'label' => 'EOS Amount <span class="text-danger">*</span>',
+				'label' => 'PEOS Amount <span class="text-danger">*</span>',
         'label_attributes' => array(
           'class'  => 'form-label'
         ),
